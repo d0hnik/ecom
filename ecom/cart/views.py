@@ -9,7 +9,8 @@ def cart_summary(request):
     cart = Cart(request)
     products = cart.get_prods()
     quantities = cart.get_quantities()
-    return render(request, 'cart_summary.html', {"products": products, "quantities": quantities})
+    totals = cart.get_totals()
+    return render(request, 'cart_summary.html', {"products": products, "quantities": quantities, "totals": totals})
 
 
 def cart_add(request):
@@ -30,7 +31,13 @@ def cart_add(request):
 
 
 def cart_delete(request):
-    pass
+    cart = Cart(request=request)
+    if request.POST.get('action') == 'post':
+        product_id = request.POST.get('product_id')
+
+        cart.delete(product_id=product_id)
+        response = JsonResponse({'message': "success"})
+        return response
 
 
 def cart_update(request):
@@ -38,7 +45,9 @@ def cart_update(request):
     if request.POST.get('action') == 'post':
         product_id = request.POST.get('product_id')
         product_qty = request.POST.get('product_qty')
-
-        cart.update(product_id=product_id, quantity=product_qty)
+        if int(product_qty) > 0:
+            cart.update(product_id=product_id, quantity=product_qty)
+        else:
+            cart.delete(product_id=product_id)
         response = JsonResponse({'qty': cart.__len__()})
         return response

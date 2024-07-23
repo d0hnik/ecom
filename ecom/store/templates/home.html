@@ -5,10 +5,13 @@
 
 {% block content %}
 <!-- Header-->
-<header>
-        <div class="text-center">
-            <img src="{% static 'assets/thumbnail.jpg' %}" alt="Thumbnail" class="img-fluid" style="width: 1500px; height: auto;">
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Welcome to test store</h1>
+            <p class="lead fw-normal text-white-50 mb-0">All products</p>
         </div>
+    </div>
 </header>
         <!-- Section-->
         <section class="py-5">
@@ -20,7 +23,11 @@
                         <div class="card h-100 d-flex flex-column shadow-sm" style="border-radius: 15px; overflow: hidden;">
                             <!-- Sale badge-->
                             {% if product.is_sale %}
-                                <div class="badge sale-badge text-white position-absolute" style="top: 0.5rem; left: 0.5rem">-{{ product.sale_price }}%</div>
+                                {% for key, value in sale_percentages.items %}
+                                    {% if key == product.id%}
+                                        <div class="badge sale-badge text-white position-absolute" style="top: 0.5rem; left: 0.5rem">-{{ value }}%</div>
+                                    {% endif %}
+                                {% endfor %}
                             {% endif %}
                             <!-- Product image-->
                             <div class="img-container">
