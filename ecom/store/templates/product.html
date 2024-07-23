@@ -22,7 +22,15 @@
                         </div>
                         <p class="lead">{{product.description}}</p>
                         <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                            <div class="col-md-2">
+                                <select class="form-select" id="qty-cart">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
                             <button value='{{ product.id }}'class="btn btn-outline-dark flex-shrink-0" type="button" id="add-cart">
                                 <i class="bi-cart-fill me-1"></i>
                                 Add to cart
@@ -66,7 +74,9 @@
                             <div class="col mb-5">
                                 <div class="card h-100">
                                     <!-- Product image-->
-                                    <img class="card-img-top" src="{{ product.image.url }}" alt="..." />
+                            <div class="img-container">
+                                <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}" />
+                            </div>
                                     <!-- Product details-->
                                     <div class="card-body p-4">
                                         <div class="text-center">
@@ -97,6 +107,7 @@ $(document).on('click', '#add-cart', function (e){
         url: '{% url 'cart_add' %}',
         data: {
             product_id: $('#add-cart').val(),
+            product_qty: $('#qty-cart option:selected').text(),
             csrfmiddlewaretoken: '{{ csrf_token }}',
             action: 'post'
         },
