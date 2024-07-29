@@ -1,4 +1,5 @@
-        <!-- Navigation-->
+{% load static %}
+<!-- Old
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="{% url 'home' %}">Daniil Petrov shop</a>
@@ -7,14 +8,6 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
-
-                        {% if user.is_authenticated %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
-
-                        {% else %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
-                        {% endif %}
 
 
 
@@ -28,13 +21,59 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <a href="{% url 'cart_summary'%}" class="btn btn-outline-dark">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">{{ cart|length }}</span>
-                        </a>
-                    </form>
                 </div>
             </div>
         </nav>
+        -->
+  <header class='page-header'>
+  	  <div class='container'>
+        <div class='logo'>
+          <a href="{% url 'home' %}"><img src="{% static 'assets/logo.png' %}" class='logo-picture transition picture' align="center"></a>
+        </div>
+        <div class='white-strip'>
+          </div>
+        <div class='nav-bar'>
+          <ul class='header-menu'>
+
+            <a href="{% url 'home' %}" class="transition"><li class='header-menu-item'>HOME</li></a>
+
+            <li>
+                <a class="nav-link dropdown-toggle header-menu-item" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown">CATEGORIES</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="{% url 'home' %}">ALL PRODUCTS</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="{% url 'category' 'Jordan' %}">JORDANS</a></li>
+                    <li><a class="dropdown-item" href="{% url 'category' 'Air-Force-1' %}">AIR FORCE 1</a></li>
+                </ul>
+            </li>
+            <a href="{% url 'search'%}"><li class='header-menu-item'>SEARCH</li></a>
+            <a href="{% url 'category' 'sale' %}"><li class='header-menu-item'>ON SALE</li></a>
+
+            <a href="{% url 'about' %}"><li class='header-menu-item'>ABOUT US</li></a>
+
+            {% if user.is_authenticated %}
+              <a href="{% url 'logout' %}"><li class='header-menu-item'>LOGOUT</li></a>
+              <li>
+                    <a class="nav-link dropdown-toggle header-menu-item" id="navbarDropdown2" href="#" role="button" data-bs-toggle="dropdown">PROFILE</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'update_user' %}">USER PROFILE</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="{% url 'update_info'%}">USER INFO</a></li>
+                    </ul>
+              </li>
+
+            {% else %}
+              <a href="{% url 'login' %}"><li class='header-menu-item'>LOGIN</li></a>
+              <a href="{% url 'register' %}"><li class='header-menu-item'>REGISTER</li></a>
+
+            {% endif %}
+
+            <a href='#'><li class='user fas fa-user'></li></a>
+               <a href="{% url 'cart_summary'%}" class="btn btn-outline-light">
+               <i class="bi-cart-fill me-1"></i>
+               <span class="badge bg-light text-dark ms-1 rounded-pill" id="cart_quantity">{{ cart|length }}</span>
+            </a>
+          </ul>
+        </div>
+      </div>
+  </header>

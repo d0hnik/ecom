@@ -1,0 +1,242 @@
+/* Global Styles */
+a {
+    display: block;
+    color: inherit; /* Ensure text color matches the card content */
+    text-decoration: none; /* Remove default link underline */
+}
+
+a:hover {
+    color: inherit; /* Prevent color change on hover */
+    text-decoration: none;
+}
+
+/* Slider Styles */
+.slider {
+    height: 790px;
+    background-repeat: no-repeat;
+    width: 100%;
+    background-size: cover;
+    background-image: url('{% static "assets/background.png" %}');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+/* Overlay Styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 1;
+    z-index: 9999; /* Tagab, et overlay on kõigi teiste elementide kohal */
+    transition: opacity 2s; /* Fade-in efekti sujuvus */
+}
+
+/* Logo Styles */
+.logo {
+    text-align: center;
+}
+
+.logo-picture {
+    width: 180px;
+    height: 90px;
+    padding-top: 30px;
+}
+
+/* White Strip Styles */
+.white-strip {
+    width: 100%;
+    border: 1px solid white;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+/* Page Header Styles */
+.page-header {
+    background-color: black;
+    width: 100%;
+}
+
+/* Header Menu Styles */
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.header-menu-item {
+    text-decoration: none;
+    color: white;
+    margin: 8px;
+    letter-spacing: .07em;
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 16px;
+    display: inline-block;
+    position: relative;
+}
+
+.header-menu-item:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.header-menu-item:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: gray;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.header-menu-item:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Card Styles */
+
+/* Image Container Styles */
+.img-container {
+    height: 400px; /* Adjust height as needed */
+    overflow: hidden;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Card Body Styling */
+.card-body {
+    flex: 1; /* Ensure card body takes up available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left; /* Align text to the left */
+    background: none; /* Remove background */
+    padding: 1rem;
+}
+
+/* Ensure consistent height for all cards */
+.card-body, .card-img-top {
+    width: 100%;
+}
+
+h5 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* Product Styles */
+.product-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+}
+
+.product-price {
+    font-family: 'Hammersmith One';
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.product-category {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+}
+
+/* Sale Badge Styles */
+.badge {
+    font-size: 0.9rem;
+    padding: 0.5em;
+    border-radius: 0.25rem;
+}
+
+.sale-badge {
+    background-color: #cc02d2;
+}
+
+.old-price {
+    text-decoration: line-through;
+    text-decoration-color: #cc02d2;
+    text-decoration-thickness: 2px;
+}
+
+.sale-price {
+    color: #cc02d2;
+}
+
+/* Container Styles */
+.container {
+    max-width: 1200px;
+}
+
+/* User and Header Menu Icon Styles */
+.user, .header-menu-icon {
+    text-decoration: none;
+    color: white;
+    margin: 8px;
+    letter-spacing: .07em;
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 16px;
+    display: inline-block;
+    position: relative;
+}
+
+.footer {
+
+	background-color: black;
+	margin-top: 20px;
+	color: white;
+	padding-top: 150px;
+}
+
+.news-subscription {
+
+	font-family: 'Hammersmith One';
+	text-transform: uppercase;
+	letter-spacing: .09em;
+	font-size: 23px;
+
+}
+
+.news-title {
+
+	font-family: 'Hammersmith One';
+	text-transform: uppercase;
+	letter-spacing: .09em;
+	font-size: 23px;
+
+}
+
+.footer-containers {
+
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+
+}
+
+.subscription {
+
+	background-color: black;
+	border: 0;
+	border-bottom: 1px solid gray;
+	font-size: 17px;
+	margin-top: 15px;
+	padding-bottom: 7px;
+	margin-bottom: 80px;
+}
