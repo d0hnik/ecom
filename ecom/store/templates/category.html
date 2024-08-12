@@ -13,7 +13,11 @@
                         <div class="card h-100 d-flex flex-column shadow-sm" style="border-radius: 15px; overflow: hidden;">
                             <!-- Sale badge-->
                             {% if product.is_sale %}
-                                <div class="badge sale-badge text-white position-absolute" style="top: 0.5rem; left: 0.5rem">-{{ product.sale_price }}%</div>
+                                {% for key, value in sale_percentages.items %}
+                                    {% if key == product.id %}
+                                        <div class="badge sale-badge text-white position-absolute" style="top: 0.5rem; left: 0.5rem">-{{ value }}%</div>
+                                    {% endif %}
+                                {% endfor %}
                             {% endif %}
                             <!-- Product image-->
                             <div class="img-container">

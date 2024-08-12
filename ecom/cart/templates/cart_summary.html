@@ -60,11 +60,10 @@
                     {% endif %}
                   </div>
                   <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                    <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                    <button type='button' data-index="{{product.id}}" class="text-danger btn delete-product"><i class="fas fa-trash fa-lg"></i></button>
                   </div>
                 </div>
               </div>
-              <button type="button" data-index="{{product.id}}" class="delete-product position-absolute top-0 end-0 m-2"><i class="bi bi-x text-danger"></i></button>
             </div>
           {% endfor %}
         <h3>Total: {{totals}}</h3>
@@ -73,7 +72,7 @@
           <div class="card-body p-4 d-flex flex-row">
             <div data-mdb-input-init class="form-outline flex-fill">
               <input type="text" class="form-control form-control-lg" />
-              <label class="form-label" for="form1">Discound code</label>
+              <label class="form-label">Discount code</label>
             </div>
             <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-warning btn-lg ms-3">Apply</button>
           </div>
@@ -83,7 +82,7 @@
       <!-- Proceed to pay -->
         <div class="card">
           <div class="card-body">
-            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+            <a href="{% url 'checkout' %}" class="btn btn-warning btn-block btn-lg">Checkout</a>
           </div>
         </div>
         {% else %}
@@ -112,7 +111,7 @@ $(document).on('change', '.product-quantity', function (e) {
     var productid = $(this).data('index');
     $.ajax({
         type: 'POST',
-        url: '{% url 'cart_update' %}',
+        url: '{% url "cart_update" %}',
         data: {
             product_id: productid,
             product_qty: $('#select' + productid + ' option:selected').text(),
@@ -138,7 +137,7 @@ $(document).on('click', '.delete-product', function (e){
     var productid = $(this).data('index');
     $.ajax({
         type: 'POST',
-        url: '{% url 'cart_delete' %}',
+        url: '{% url "cart_delete" %}',
         data: {
             product_id: $(this).data('index'),
             csrfmiddlewaretoken: '{{ csrf_token }}',
@@ -168,12 +167,12 @@ $(document).on('click', '.delete-product', function (e){
 
 .old-price {
     text-decoration: line-through;
-    text-decoration-color: #cc02d2;
+    text-decoration-color: #FF5733;
     text-decoration-thickness: 2px;
 }
 
 .sale-price{
-    color: #cc02d2;
+    color: #FF5733;
 }
 
 .position-absolute {
@@ -200,13 +199,13 @@ $(document).on('click', '.delete-product', function (e){
 }
 
 .delete-product .bi-x {
-  font-size: 1.5rem; /* Muuda suurust vastavalt vajadusele */
+  font-size: 1.5rem;
 }
 
 .small-select {
   height: auto;
   padding: 0.25rem 0.5rem;
-  font-size: 0.875rem; /* Võid kohandada vastavalt vajadusele */
+  font-size: 0.875rem;
   width: 100px;
 }
 </style>

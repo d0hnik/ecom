@@ -1,0 +1,89 @@
+{% extends 'base.html'%}
+
+
+{% include 'navbar.html'%}
+
+{% block content %}
+
+<section class="h-100">
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+    </div>
+      <div class="container">
+          BILLING INFO
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <div class="card">
+                <div class="card-header">
+                  Billing Info
+                </div>
+                <div class="card-body">
+                  {% for product in products %}
+                    {{ product.name}}
+                    {% if product.is_sale %}
+                        {{ product.sale_price }} €
+                    {% else %}
+                        {{ product.price }} €
+                    {% endif%}
+
+                    <small>Quantity:
+                    {% for key, value in quantities.items %}
+                       {% if key == product.id|slugify %}
+                           {{ value }}
+                        {% endif %}
+                      {% endfor %}</small>
+                  <br>
+                  {% endfor%}
+                  <strong>Total: {{totals}} €</strong>
+                  <br>
+                  <a href="{% url 'cart_summary' %}" class="btn btn-info"> Update Items</a>
+                </div>
+              </div>
+              <br>
+              <br>
+
+              <div class="card">
+                  <div class="card-header">
+                    Shipping info
+                  </div>
+                  <div class="card-body">
+                      Name: {{ shipping_info.shipping_full_name }}<br>
+                      Email: {{ shipping_info.shipping_email }}<br>
+                      Address 1: {{ shipping_info.shipping_address1 }}<br>
+                      Address 2: {{ shipping_info.shipping_address2 }}<br>
+                      City: {{ shipping_info.shipping_city }}<br>
+                      State: {{ shipping_info.shipping_state }}<br>
+                      ZipCode: {{ shipping_info.shipping_zipcode }}<br>
+                      Country: {{ shipping_info.shipping_country }}<br>
+                      <br>
+                      <a href="{% url 'checkout' %}" class="btn btn-info">Update Shipping info</a>
+                  </div>
+              </div>
+              <br><br>
+              <div class="card">
+                  <div class="card-header">
+                    BILLING INFO
+                  </div>
+                  <div class="card-body">
+                      <form method="POST" action="{% url 'process_order' %}">
+                      <br>
+                          {% csrf_token %}
+                      {{ billing_form.as_p }}
+                  </div>
+              </div>
+
+              <br>
+              <br>
+              <div class="row">
+                  <button type="submit" class="btn btn-warning btn-lg">
+                      Pay now
+                  </button>
+                  </form>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+{% endblock %}

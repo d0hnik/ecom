@@ -13,5 +13,6 @@ urlpatterns = [
     path('product/<int:pk>', views.product, name='product'),
     path('category/<str:foo>', views.category, name='category'),
     path('search/', views.search, name='search'),
+    path('admin_panel', views.admin_panel, name='admin_panel'),
 
 ]

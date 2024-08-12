@@ -1,0 +1,102 @@
+{% extends 'base.html'%}
+
+
+{% include 'navbar.html'%}
+
+{% block content %}
+
+<section class="h-100">
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+    </div>
+      <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <div class="card">
+                <div class="card-header">
+                  Order Summary
+                </div>
+                <div class="card-body">
+                  {% for product in products %}
+                    {{ product.name}}
+                    {% if product.is_sale %}
+                        {{ product.sale_price }} €
+                    {% else %}
+                        {{ product.price }} €
+                    {% endif%}
+
+                    <small>Quantity:
+                    {% for key, value in quantities.items %}
+                       {% if key == product.id|slugify %}
+                           {{ value }}
+                        {% endif %}
+                      {% endfor %}</small>
+                  <br>
+                  {% endfor%}
+                  <strong>Total: {{totals}} €</strong>
+                  <br>
+                  <a href="{% url 'cart_summary' %}" class="btn btn-sm btn-outline-secondary"> Update Items</a>
+                </div>
+              </div>
+              <br>
+              <br>
+
+              <div class="card">
+                <div class="card-header">
+                  Shipping info
+                </div>
+                <div class="card-body">
+                  <form method="POST" action="{% url 'billing_info' %}">
+                        {% csrf_token %}
+                        {{ shipping_form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-secondary">Continue to billing</button>
+                  </form>
+                </div>
+              </div>
+    <div class="container mt-5">
+        <div class="form-floating-label">
+            <input type="text" id="firstName" placeholder=" " required>
+            <label for="firstName">Eesnimi <span class="text-primary">*</span></label>
+        </div>
+    </div>
+          </div>
+      </div>
+  </div>
+  </div>
+
+<style>
+  .form-floating-label {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .form-floating-label input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 12px 8px 8px 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+.form-floating-label label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 14px;
+    background: white;
+    padding: 0 5px;
+    transition: all 0.2s ease-out;
+    color: gray;
+}
+.form-floating-label input:focus ~ label,
+.form-floating-label input:not(:placeholder-shown) ~ label {
+  top: -10px;
+  left: 5px;
+  font-size: 12px;
+  color: blue;
+}
+
+.delete-product .bi-x {
+  font-size: 1.5rem;
+}
+</style>
+{% endblock %}

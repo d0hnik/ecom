@@ -1,0 +1,184 @@
+{% extends 'base.html'%}
+
+
+{% include 'navbar.html'%}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <span class="base text-center">Tellimuse üksikasjad</span>
+    </div>
+
+    <div class="row">
+        <div class="row padding-title-bottom">
+            <div class="col">
+                <span class="step-title">Kliendi info</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 info-divider">
+                <span class="info-label">Email:</span>
+                <span class="info">{{ order.email }}</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 info-divider">
+                <span class="info-label">Tellimuse kuupäev:</span>
+                <span class="info">{{ order.date_ordered }}</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 info-divider">
+                <span class="info-label">Aadress:</span>
+                <span class="info">{{ order.shipping_address }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="row padding-title-bottom padding-title-top">
+            <div class="col">
+                <span class="step-title">Tellimuse asjad</span>
+            </div>
+        </div>
+
+        <div class="row">
+            {% for product in items %}
+                <div class="cart-item">
+                <div class="row">
+                    <div class="row">
+                        <span class="cart-product-title">Nimi: {{ product.product }}</span>
+                        <span class="cart-product-title-smaller">Hind: {{ product.product.price }}</span>
+                        <span class="cart-product-title-smaller">Kogus: {{ product.quantity }}</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="cart-product-img">
+                                <img class="card-img-top" src="{{ product.product.image.url }}" alt="{{ product.name }}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            <hr class="info-divider">
+                {% endfor %}
+        </div>
+
+        <div class="row">
+            {% if not order.shipped%}
+                <form action="" method="POST">
+                    {%csrf_token%}
+                    <input type="hidden" value="true" name="shipping_status">
+                    <button type="submit" class="shipped-button">Märgi tellimus välja saadetuks</button>
+                </form>
+            {% else %}
+                <form action="" method="POST">
+                        {%csrf_token%}
+                        <input type="hidden" value="false" name="shipping_status">
+                        <button type="submit" class="unshipped-button">Märgi tellimus MITTE välja saadetuks</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+<style>
+
+    .unshipped-button {
+        background-color: darkred;
+        border: 1px solid darkred;
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        width: 100%;
+        height: 3rem;
+        font-size: 1.3rem;
+    }
+
+    .shipped-button {
+        background-color: #FF5733;
+        border: 1px solid #FF5733;
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        width: 100%;
+        height: 3rem;
+        font-size: 1.3rem;
+    }
+
+    .padding-title-top{
+        padding-top: 50px;
+    }
+
+    .cart-item {
+        margin-bottom: 25px;
+    }
+
+    .cart-product-img{
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 2px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: block;
+        margin-top: 20px;
+    }
+
+    .cart-product-title{
+        font-size: 2rem;
+        font-weight: 500;
+        padding-bottom: 30px;
+    }
+
+    .cart-product-title-smaller{
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    .info-divider {
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 20px;
+        margin-bottom: 10px;
+    }
+
+    .info-label {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.7rem;
+    }
+
+    .info {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.4rem;
+    }
+
+    .padding-title-bottom{
+        padding-bottom: 30px;
+    }
+
+    .step-title{
+        background-color: #1d1d1d;
+        font-family: "Poppins", sans-serif;
+        color: white;
+        font-size: 1.7rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        height: 4rem;
+        padding-left: 20px;
+    }
+
+    .base {
+        font-family: "Poppins", sans-serif;
+        font-size: 3rem;
+        padding-top: 5rem;
+        padding-bottom: 3rem;
+
+    }
+</style>
+
+{% endblock %}

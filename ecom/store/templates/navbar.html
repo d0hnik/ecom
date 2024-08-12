@@ -1,79 +1,160 @@
 {% load static %}
-<!-- Old
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="{% url 'home' %}">Daniil Petrov shop</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+<nav id="mainNavbar" class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a href="{% url 'home'%}"><img src="{% static 'assets/main_logo2.png'%}" class="logo"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item nav-items">
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Kõik tooted</a>
+        </li>
+        <li class="nav-item nav-items">
+          <a class="nav-link active sale-link" href="{% url 'category' 'sale' %}">Soodus</a>
+        </li>
+        <li class="nav-item nav-items">
+          <a class="nav-link active" href="{% url 'category' 'Air-Force-1' %}">Air Force 1</a>
+        </li>
+        <li class="nav-item nav-items">
+          <a class="nav-link active" href="{% url 'category' 'Jordan' %}">Jordan</a>
+        </li>
 
-
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{% url 'home' %}">All Products</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="{% url 'category' 'Jordan' %}">Jordan</a></li>
-                                <li><a class="dropdown-item" href="{% url 'category' 'Air-Force-1' %}">Air Force 1</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+        <li class="nav-item nav-search">
+          <div class="container-md">
+          <form class="d-flex" role="search" action="{% url 'search'%}" method="POST">
+            {% csrf_token %}
+            <button class="btn" type="submit"><i class="bi bi-search"></i></button>
+            <input class="form-control me-2 nav-search-input" type="search" name="searched" id="searched" placeholder="Otsi kogu poest..." aria-label="Search">
+          </form>
             </div>
-        </nav>
-        -->
-  <header class='page-header'>
-  	  <div class='container'>
-        <div class='logo'>
-          <a href="{% url 'home' %}"><img src="{% static 'assets/logo.png' %}" class='logo-picture transition picture' align="center"></a>
+        </li>
+
+      </ul>
+      {% if user.is_authenticated %}
+        <div class="dropdown">
+           <a class="nav-link active icon-large" id="navbarDropdown3" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-person-circle"></i></a>
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+             <li><a class="dropdown-item" href="{% url 'update_user' %}">Konto üksikasjad</a></li>
+             <li><hr class="dropdown-divider" /></li>
+             <li><a class="dropdown-item" href="{% url 'update_info'%}">Kohaletoimetamise aadress</a></li>
+             <li><hr class="dropdown-divider" /></li>
+             {% if user.is_superuser %}
+                <li><a class="dropdown-item" href="{% url 'admin_panel'%}">Admini paneel</a></li>
+                <li><hr class="dropdown-divider" /></li>
+             {% endif %}
+             <li><a class="dropdown-item" href="{% url 'logout'%}">Logi välja</a></li>
+           </ul>
         </div>
-        <div class='white-strip'>
-          </div>
-        <div class='nav-bar'>
-          <ul class='header-menu'>
+      {% else %}
+        <a href="{% url 'login' %}" class="nav-link icon-large"><i class="bi bi-person-circle"></i></a>
+      {% endif %}
+      <a href="{% url 'cart_summary'%}" class="nav-link active nav-cart icon-large">
+          <i class="bi bi-basket"></i>
+          <span class="badge text-dark ms-1" id="cart_quantity">{{ cart|length }}</span>
+      </a>
+    </div>
+  </div>
+</nav>
 
-            <a href="{% url 'home' %}" class="transition"><li class='header-menu-item'>HOME</li></a>
-
-            <li>
-                <a class="nav-link dropdown-toggle header-menu-item" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown">CATEGORIES</a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="{% url 'home' %}">ALL PRODUCTS</a></li>
-                    <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="{% url 'category' 'Jordan' %}">JORDANS</a></li>
-                    <li><a class="dropdown-item" href="{% url 'category' 'Air-Force-1' %}">AIR FORCE 1</a></li>
-                </ul>
+  <nav id="secondNavbar" class="navbar second-navbar navbar-expand-sm">
+          <ul class="nav small-navbar">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Vabaajajalatsid</a>
             </li>
-            <a href="{% url 'search'%}"><li class='header-menu-item'>SEARCH</li></a>
-            <a href="{% url 'category' 'sale' %}"><li class='header-menu-item'>ON SALE</li></a>
 
-            <a href="{% url 'about' %}"><li class='header-menu-item'>ABOUT US</li></a>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Riided</a>
+            </li>
 
-            {% if user.is_authenticated %}
-              <a href="{% url 'logout' %}"><li class='header-menu-item'>LOGOUT</li></a>
-              <li>
-                    <a class="nav-link dropdown-toggle header-menu-item" id="navbarDropdown2" href="#" role="button" data-bs-toggle="dropdown">PROFILE</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{% url 'update_user' %}">USER PROFILE</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="{% url 'update_info'%}">USER INFO</a></li>
-                    </ul>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Aksessuaarid</a>
+            </li>
 
-            {% else %}
-              <a href="{% url 'login' %}"><li class='header-menu-item'>LOGIN</li></a>
-              <a href="{% url 'register' %}"><li class='header-menu-item'>REGISTER</li></a>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Sport</a>
+            </li>
 
-            {% endif %}
+            <li class="nav-item last-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Uus</a>
+            </li>
 
-            <a href='#'><li class='user fas fa-user'></li></a>
-               <a href="{% url 'cart_summary'%}" class="btn btn-outline-light">
-               <i class="bi-cart-fill me-1"></i>
-               <span class="badge bg-light text-dark ms-1 rounded-pill" id="cart_quantity">{{ cart|length }}</span>
-            </a>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'about' %}">Meist</a>
+            </li>
           </ul>
-        </div>
-      </div>
-  </header>
+  </nav>
+
+<style>
+
+  .navbar {
+    background-color: #fff;
+  }
+
+  .last-item {
+    border-right: 2px solid lightgray;
+    margin-right: 20px;
+  }
+
+.navbar.second-navbar .nav-link {
+  font-size: 1.2rem;
+    color: black; /* Muuda teksti värv mustaks */
+}
+
+
+.second-navbar {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.small-navbar {
+    display: flex;
+    list-style: none;
+}
+
+  .icon-large {
+    font-size: 2rem;
+  }
+
+  .nav-cart {
+    padding-left: 30px;
+    padding-right: 200px;
+  }
+
+  .nav-search {
+    position: relative;
+    top: 5px;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .nav-search-input {
+    border: none;
+  }
+
+  .sale-link {
+    color: #FF5733 !important;
+  }
+
+  .nav-items {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+    .logo {
+      width: 147px;
+      height: 72px;
+      margin-left: 120px;
+      margin-right: 40px;
+    }
+
+    .navbar {
+        height: 100px;
+        border-bottom: 1px solid lightgray;
+        font-family: "Poppins", sans-serif;
+        font-size: 1.45rem;
+        font-weight: 500;
+    }
+
+    /* #f7d500 */
+</style>

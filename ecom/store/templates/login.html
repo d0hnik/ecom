@@ -5,45 +5,175 @@
 
 {% block content %}
 
-<header class="bg-dark py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Login</h1>
-            <p class="lead fw-normal text-white-50 mb-0">Log In To Your Account...</p>
-        </div>
-    </div>
-</header>
-
-<div class="container">
+<div class="login container-fluid">
     <div class="row">
-        <center>
-            <div class="col-8">
-                <br>
-                <br>
-                <br>
-                <form method="post" action="{% url 'login'%}">
-                    {% csrf_token %}
-                      <div class="mb-3">
-                        <input type="text" class="form-control" name="username" placeholder="Enter your username">
-                      </div>
-                      <div class="mb-3">
-                        <input type="password" class="form-control" name="password" placeholder="Enter your password">
-                      </div>
-                      <button type="submit" class="btn btn-secondary">Login</button>
-                    </form>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-            </div>
-        </center>
+        <span class="login-top-label">Kliendi Login</span>
     </div>
 </div>
+<br>
+<br>
+<div class="login container-fluid">
+    <div class="row">
+        <!-- Login via google or facebook -->
+        <div class="col">
+            <div class="container">
+                <div class="login-method">
+                    <div class="row">
+                        <span class="login-method-title">Logi sisse sotsiaalmeediaga</span>
+                    </div>
+                    <div class="row">
+                        TODO: ADD SIGN IN WITH GOOGLE OR FACEBOOK
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login via username fields -->
+        <div class="col">
+            <div class="container">
+                <div class="login-method">
+                    <div class="row">
+                        <span class="login-method-title">Registreerunud kasutajatele</span>
+                    </div>
+                    <div class="row">
+                        <span class="login-text-info">Kui teil on konto olemas, logi sisse kasutajatunnusega</span>
+                    </div>
+
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+
+                        <div class="form-floating-label padding-input">
+                            <input type="text" id="username" name="username" placeholder=" " required>
+                            <label>Kasutajatunnus <span class="text-primary">*</span></label>
+                        </div>
+
+                        <div class="form-floating-label padding-input">
+                            <input type="password" id="password" name="password" placeholder=" " required>
+                            <label>Parool <span class="text-primary">*</span></label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="pay-button-new">Logi Sisse</button>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register -->
+        <div class="col">
+            <div class="container">
+                <div class="login-method">
+                    <div class="row">
+                        <span class="login-method-title">Loo uus konto</span>
+                    </div>
+                    <div class="row">
+                        <span class="login-text-info">Kui teil ei ole kontot, saate registreerida siin. Konto loomine ei ole kohustuslik, kuid annab eeliseid. Nimelt saate jälgida tellimuste ajalugu, jälgida tellimuse staatust, lisada tooteid lemmikuteks jne.</span>
+                        <div class="col-md-6">
+                            <a href="{% url 'register' %}"><button class="pay-button-new">Loo Konto</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<style>
+
+    .pay-button-new {
+        background-color: #FF5733;
+        border: 1px solid #FF5733;
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        margin-top: 30px;
+        font-weight: 500;
+        width: 100%;
+        height: 3rem;
+        font-size: 1.3rem;
+    }
+
+    .login-text-info {
+        padding-top: 15px;
+        padding-bottom: 35px;
+    }
+
+    .form-floating-label {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .form-floating-label input {
+        border: 1px solid lightgray;
+        border-radius: 1px;
+        padding: 12px 8px 8px 8px;
+        width: 100%;
+        box-sizing: border-box;
+        height: 3.5rem;
+    }
+
+    .form-floating-label label {
+        position: absolute;
+        top: 14px;
+        left: 10px;
+        font-size: 1.1rem;
+        background: white;
+        padding: 0 5px;
+        transition: all 0.2s ease-out;
+        color: gray;
+        pointer-events: none;
+    }
+
+    .form-floating-label input:focus ~ label,
+    .form-floating-label input:not(:placeholder-shown) ~ label {
+      top: -10px;
+      left: 5px;
+      font-size: 12px;
+      color: blue;
+    }
+
+    .login-method {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .login {
+        padding-left: 150px;
+        padding-right: 150px;
+    }
+
+    .login-method-title {
+        font-size: 1.2rem;
+        padding-bottom: 20px;
+        border-bottom: 1px solid lightgray;
+        font-weight: 500;
+    }
+
+    .container {
+        font-family: "Poppins", sans-serif;
+    }
+    .login-top-label {
+        font-weight: 700;
+        font-size: 3.5rem;
+        padding-top: 50px;
+        padding-left: 250px;
+    }
+</style>
 
 {% endblock %}
