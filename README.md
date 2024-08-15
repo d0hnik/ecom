@@ -1,4 +1,5 @@
-<h3>Click here for live demo <a href=""https://ecom-production-735b.up.railway.app/>LIVE DEMO</a></h3>
+
+<h3>Click here for live demo <a href="https://ecom-production-735b.up.railway.app/" target='_blank'>LIVE DEMO</a></h3>
 <hr>
 <h1>About the project</h1>
 <img src='https://github.com/user-attachments/assets/bb85da16-8317-4916-8139-f2d22ec76c7d'>
