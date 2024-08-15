@@ -19,7 +19,6 @@ DEBUG = True
 
 # COMMENT ALLOWED_HOSTS AND CSRF_TRUSTED_ORIGINALS IF YOU WANT TO USE ON YOUR LOCAL
 # MACHINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 ALLOWED_HOSTS = ['ecom-production-735b.up.railway.app', 'https://ecom-production-735b.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['https://ecom-production-735b.up.railway.app']
 

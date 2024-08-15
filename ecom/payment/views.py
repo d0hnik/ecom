@@ -36,7 +36,7 @@ def orders(request, pk):
 def not_shipped_dash(request):
     if request.user.is_authenticated and request.user.is_superuser:
         orders = Order.objects.filter(shipped=False)
-        return render(request, 'payment/not_shipped_dash.html',{"orders": orders})
+        return render(request, 'payment/not_shipped_dash.html', {"orders": orders})
     else:
         messages.error(request, 'Access denied')
         return redirect('home')
@@ -52,7 +52,7 @@ def shipped_dash(request):
 
 
 def get_tax(totals):
-    return float(totals) * 0.18
+    return round(float(totals) * 0.18, 2)
 
 
 def process_order(request):

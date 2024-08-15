@@ -59,27 +59,27 @@
 
   <nav id="secondNavbar" class="navbar second-navbar navbar-expand-sm">
           <ul class="nav small-navbar">
-            <li class="nav-item">
+            <li class="nav-item-second">
               <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Vabaajajalatsid</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item-second">
               <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Riided</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item-second">
               <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Aksessuaarid</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item-second">
               <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Sport</a>
             </li>
 
-            <li class="nav-item last-item">
+            <li class="nav-item-second last-item">
               <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Uus</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item-second">
               <a class="nav-link active" aria-current="page" href="{% url 'about' %}">Meist</a>
             </li>
           </ul>
@@ -87,8 +87,9 @@
 
 <style>
 
-  .navbar {
-    background-color: #fff;
+  .navbar.second-navbar .nav-link {
+    font-size: 1.2rem;
+    color: black;
   }
 
   .last-item {
@@ -96,22 +97,87 @@
     margin-right: 20px;
   }
 
-.navbar.second-navbar .nav-link {
-  font-size: 1.2rem;
-    color: black; /* Muuda teksti värv mustaks */
+  @media (max-width: 992px) {
+    .nav-item {
+        font-size: 1rem; /* Vähendame fonti keskmistel ekraanidel */
+        /*background-color: white;*/
+    }
+
+    .collapse {
+      background-color: white;
+    }
+
+    .nav-cart {
+      position: relative;
+      top: -50px;
+      right: -30px;
+    }
+
+    .navbar.second-navbar .nav-link {
+      font-size: 0.7rem;
+      padding-left: 5px;
+      padding-right: 10px;
+    }
+
 }
 
+/* Väiksemad ekraanid (nt. mobiilid) */
+  @media (max-width: 768px) {
+    .nav-cart {
+      position: relative;
+      top: -50px;
+      right: -30px;
+    }
 
-.second-navbar {
+    .collapse {
+      background-color: white;
+    }
+
+    .navbar.second-navbar .nav-link {
+      font-size: 0.8rem;
+      color: black;
+    }
+
+    .last-item {
+      margin-right: 5px;
+    }
+}
+  .collapse {
+    z-index: 2;
+  }
+
+  .navbar {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-nav {
+    display: flex;
+    align-items: center; /* Tagab, et nav-elemendid on vertikaalselt keskel */
+  }
+
+  .navbar-toggler {
+    display: flex;
+    align-items: center; /* Tagab, et nav-toggleri ikoon on vertikaalselt keskel */
+  }
+
+  .navbar .nav-item {
+    display: flex;
+    align-items: center; /* Tagab, et iga nav-item on vertikaalselt keskel */
+  }
+
+
+  .second-navbar {
     display: flex;
     justify-content: center;
     width: 100%;
-}
+  }
 
-.small-navbar {
+  .small-navbar {
     display: flex;
     list-style: none;
-}
+  }
 
   .icon-large {
     font-size: 2rem;
@@ -141,20 +207,18 @@
     padding-right: 20px;
   }
 
-    .logo {
+  .logo {
       width: 147px;
       height: 72px;
       margin-left: 120px;
       margin-right: 40px;
-    }
+  }
 
-    .navbar {
+  .navbar {
         height: 100px;
         border-bottom: 1px solid lightgray;
         font-family: "Poppins", sans-serif;
         font-size: 1.45rem;
         font-weight: 500;
-    }
-
-    /* #f7d500 */
+  }
 </style>
