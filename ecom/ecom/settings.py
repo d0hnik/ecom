@@ -19,8 +19,8 @@ DEBUG = True
 
 # COMMENT ALLOWED_HOSTS AND CSRF_TRUSTED_ORIGINALS IF YOU WANT TO USE ON YOUR LOCAL
 # MACHINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-ALLOWED_HOSTS = ['ecom-production-735b.up.railway.app', 'https://ecom-production-735b.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['https://ecom-production-735b.up.railway.app']
+# ALLOWED_HOSTS = ['ecom-production-735b.up.railway.app', 'https://ecom-production-735b.up.railway.app', '127.0.0.1']
+# CSRF_TRUSTED_ORIGINS = ['https://ecom-production-735b.up.railway.app']
 
 # Application definition
 
@@ -77,16 +77,16 @@ DATABASES = {
     'default': {
         # UNCOMMENT FIRST TWO LINES (ENGINE AND NAME) TO USE ON YOUR LOCAL MACHINE
 
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
 
         # COMMENT FROM HERE TO PORT TO USE ON YOUR MACHINE
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': os.environ.get("DB_PASSWORD"),
-        'HOST': 'monorail.proxy.rlwy.net',
-        'PORT': '14178',
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'railway',
+        # 'USER': 'postgres',
+        # 'PASSWORD': os.environ.get("DB_PASSWORD"),
+        # 'HOST': 'monorail.proxy.rlwy.net',
+        # 'PORT': '14178',
     }
 }
 

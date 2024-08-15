@@ -97,6 +97,17 @@
     margin-right: 20px;
   }
 
+  .navbar-toggler {
+    display: flex;
+    align-items: center; /* Tagab, et nav-toggleri ikoon on vertikaalselt keskel */
+  }
+
+  @media (max-width: 386px) {
+    .navbar-toggler {
+      z-index: 2;
+    }
+  }
+
   @media (max-width: 992px) {
     .nav-item {
         font-size: 1rem; /* Vähendame fonti keskmistel ekraanidel */
@@ -141,7 +152,13 @@
     .last-item {
       margin-right: 5px;
     }
+
+    .navbar-toggler {
+      position: relative;
+      left: -340px;
+    }
 }
+
   .collapse {
     z-index: 2;
   }
