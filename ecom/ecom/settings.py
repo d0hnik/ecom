@@ -16,6 +16,10 @@ SECRET_KEY = 'django-insecure-@wgxlmylc-sh=ufk6p$0g5rtlnwxvv&duzpyjl0(3_*n6o2c@7
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+# COMMENT ALLOWED_HOSTS AND CSRF_TRUSTED_ORIGINALS IF YOU WANT TO USE ON YOUR LOCAL
+# MACHINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 ALLOWED_HOSTS = ['ecom-production-735b.up.railway.app', 'https://ecom-production-735b.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['https://ecom-production-735b.up.railway.app']
 
@@ -72,8 +76,12 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 
 DATABASES = {
     'default': {
+        # UNCOMMENT FIRST TWO LINES (ENGINE AND NAME) TO USE ON YOUR LOCAL MACHINE
+
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
+
+        # COMMENT FROM HERE TO PORT TO USE ON YOUR MACHINE
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
