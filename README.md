@@ -5,6 +5,7 @@
 <img src='https://github.com/user-attachments/assets/bb85da16-8317-4916-8139-f2d22ec76c7d'>
 
 <p>This is a e-commerce website built with Django</p>
+<small>Frontend is taken from <a href='ballzy.eu'> ballzy.eu </small>
 
 <h3>The common functionalities are:</h3>
 <ul>
