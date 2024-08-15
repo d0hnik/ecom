@@ -97,14 +97,16 @@
     margin-right: 20px;
   }
 
-  .navbar-toggler {
-    display: flex;
-    align-items: center; /* Tagab, et nav-toggleri ikoon on vertikaalselt keskel */
-  }
+  /*.navbar-toggler {*/
+  /*  display: flex;*/
+  /*  align-items: center; !* Tagab, et nav-toggleri ikoon on vertikaalselt keskel *!*/
+  /*}*/
 
   @media (max-width: 386px) {
     .navbar-toggler {
       z-index: 2;
+      position: relative;
+      top: -50px;
     }
   }
 
@@ -132,7 +134,7 @@
 
 }
 
-/* Väiksemad ekraanid (nt. mobiilid) */
+
   @media (max-width: 768px) {
     .nav-cart {
       position: relative;
@@ -152,13 +154,7 @@
     .last-item {
       margin-right: 5px;
     }
-
-    .navbar-toggler {
-      position: relative;
-      left: -340px;
-    }
 }
-
   .collapse {
     z-index: 2;
   }
